@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 090f22f74aeccd4488a00f923eac530f
+guid: 9d4ad548c93d1af49811e23499012b1f
 ModelImporter:
   serializedVersion: 23
   fileIDToRecycleName:
@@ -11,7 +11,12 @@ ModelImporter:
     2300000: macaverde
     3300000: macaverde
     4300000: macaverde
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: macaverdeMat
+    second: {fileID: 2100000, guid: 6006bf4fc09ebe64a884fbab737266f0, type: 2}
   materials:
     importMaterials: 1
     materialName: 0

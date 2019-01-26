@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 0b84b8931a013d5479a871e48ab7b1a7
+guid: 70f3fd35fbddaf1458d4b6e069886c6e
 ModelImporter:
   serializedVersion: 23
   fileIDToRecycleName:
@@ -11,7 +11,12 @@ ModelImporter:
     2300000: maca
     3300000: maca
     4300000: maca
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: macaMat
+    second: {fileID: 2100000, guid: f32a055eb2e898243a799297c1d8bc8d, type: 2}
   materials:
     importMaterials: 1
     materialName: 0

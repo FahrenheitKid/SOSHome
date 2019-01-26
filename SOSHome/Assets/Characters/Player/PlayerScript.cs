@@ -11,6 +11,7 @@ public class PlayerScript : MonoBehaviour
 
     Vector2 input;
     float angle;
+    public GameObject animation_object;
 
     Quaternion targetRotation;
     Transform cam;
@@ -18,6 +19,7 @@ public class PlayerScript : MonoBehaviour
     public GameObject cart;
     public GameObject cart2;
     public GameObject firstJoint;
+    public Game game;
 
     private List<GameObject> allCarts = new List<GameObject>();
 
@@ -57,6 +59,22 @@ public class PlayerScript : MonoBehaviour
         //Works with: Horizontal(a, d, Left, Right) and Vertical (w,s, Up, Down)
         input.x = Input.GetAxisRaw("Horizontal");
         input.y = Input.GetAxisRaw("Vertical");
+        if (input.x > 0 || input.y > 0 || input.x < 0 || input.y < 0) {
+            animation_object.GetComponent<Animator>().SetBool("walk", true);
+            if (input.x < 0) {
+                animation_object.GetComponent<SpriteRenderer>().flipX = true;
+                animation_object.transform.GetChild(0).GetComponent<SpriteRenderer>().flipX = true;
+            }
+            else {
+                animation_object.GetComponent<SpriteRenderer>().flipX = false;
+                animation_object.transform.GetChild(0).GetComponent<SpriteRenderer>().flipX = false;
+            }
+                
+        }
+        else
+        {
+            animation_object.GetComponent<Animator>().SetBool("walk", false);
+        }
         if (Input.GetKeyDown(KeyCode.Escape))
         {
             QuitGame();
@@ -133,6 +151,8 @@ public class PlayerScript : MonoBehaviour
                     {//Compare the types. If its a match, stores the index of the cart that needs to be emptied, and triggers the next step...
                         foundOwner = true;
                         cartIndex = i;
+
+                        game.scorePoints(game.pointsPerDog);
                     }
                 }
             }
