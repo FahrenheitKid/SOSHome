@@ -4,8 +4,10 @@ using UnityEngine;
 
 public class IA_Pet : AiLifeform
 {
-   // bool 
+    // bool 
     // Start is called before the first frame update
+
+    GameObject cart = null;
     void Start()
     {
         
@@ -14,13 +16,16 @@ public class IA_Pet : AiLifeform
     // Update is called once per frame
     void Update()
     {
-        //PutSpriteOnPlace();
+        StayOnCartPosition();
     }
 
-    void PutSpriteOnPlace() {
-        if (transform.childCount > 0) {
-            Transform sprite = transform.GetChild(0);
-            sprite.position = transform.position;
+    void StayOnCartPosition() {
+        if (cart != null) {
+            transform.position = cart.transform.position;
         }
+    }
+
+    public void setCartReference(GameObject _cart) {
+        cart = _cart;
     }
 }

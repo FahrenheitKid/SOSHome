@@ -16,9 +16,14 @@ public class PlayerScript : MonoBehaviour
     Transform cam;
 
     public GameObject cart;
+    public GameObject cart2;
+
+    private List<GameObject> allCarts = new List<GameObject>();
 
     void Start() {
         cam = Camera.main.transform;
+        allCarts.Add(cart);
+        allCarts.Add(cart2);
     }
 
     void Update() {
@@ -67,11 +72,30 @@ public class PlayerScript : MonoBehaviour
 
     void OnCollisionEnter(Collision body)
     {
-        //print("Hey");
-        if (body.transform.tag == "Pet") {
+        bool cartsAreFull = false;
+        
+        if (allCarts[0].GetComponent<CartScript>().occupied && allCarts[1].GetComponent<CartScript>().occupied) {
+            cartsAreFull = true;
+            }
+        
+        if (body.transform.tag == "Pet" && !cartsAreFull) {
+
+            GameObject chosen_cart;
+            if (!allCarts[0].GetComponent<CartScript>().occupied)
+            {
+                chosen_cart = allCarts[0];
+            }
+            else {
+                chosen_cart = allCarts[1];
+            }
+
+            chosen_cart.GetComponent<CartScript>().occupied = true;
+            chosen_cart.GetComponent<CartScript>().dog = body.gameObject;
+
             body.transform.SetParent(transform);
             body.transform.GetComponent<BoxCollider>().enabled = false;
-            body.transform.position = cart.transform.position;
+            body.transform.GetComponent<IA_Pet>().setCartReference(chosen_cart);
+            //body.transform.position = cart.transform.position;
         }
     }
 }
