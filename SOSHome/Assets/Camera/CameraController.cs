@@ -28,16 +28,21 @@ public class CameraController : MonoBehaviour
     }
 
     void MoveWithTarget() {
+        //Move the camera to the player position + current camera offset.
+        //Offset is modified by the RotateAroundTarget coroutine.
         targetPos = target.position + offsetPos;
         transform.position = Vector3.Lerp(transform.position, targetPos, moveSpeed * Time.deltaTime);
 
     }
 
     void LookAtTarget() {
+        //Use the Look vector (target - current) to aim the camera toward the player
         targetRotation = Quaternion.LookRotation(target.position - transform.position);
         transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, turnSpeed * Time.deltaTime);
     }
 
+    //Can only have one instance running at a time.
+    //Determined by the "smoothRotating" variable.
     IEnumerator RotateAroundTarget(float _angle) {
         Vector3 vel = Vector3.zero;
         Vector3 targetOffsetPos = Quaternion.Euler(0, _angle, 0) * offsetPos;
