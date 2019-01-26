@@ -61,8 +61,6 @@ public class PlayerScript : MonoBehaviour
 
     void Move() {
         //Moves towards a Vector3.forward, relative to the target rotation!
-        //transform.position += transform.forward * velocity * Time.deltaTime;
-        //transform.position = Vector3.MoveTowards(transform.position, targetRotation, velocity * Time.deltaTime);
         Vector3 dir = targetRotation * Vector3.forward;
         transform.position += dir * velocity * Time.deltaTime;
 
@@ -70,17 +68,20 @@ public class PlayerScript : MonoBehaviour
 
    
 
-    void OnCollisionEnter(Collision body)
+    void OnTriggerEnter(Collider body)
     {
+        //This may be a little complicated to follow...
         bool cartsAreFull = false;
-        
+        //Search if any of the two carts are currently occupied.
         if (allCarts[0].GetComponent<CartScript>().occupied && allCarts[1].GetComponent<CartScript>().occupied) {
             cartsAreFull = true;
             }
-        
+
+        //If i am coliding with a pet....
         if (body.transform.tag == "Pet" && !cartsAreFull) {
 
             GameObject chosen_cart;
+            //Find what car is being occupied, with preference being the last one...
             if (!allCarts[0].GetComponent<CartScript>().occupied)
             {
                 chosen_cart = allCarts[0];
@@ -88,14 +89,41 @@ public class PlayerScript : MonoBehaviour
             else {
                 chosen_cart = allCarts[1];
             }
-
+            //When found, makes it be occupied, and set it to hold a reference to its respective dog.
             chosen_cart.GetComponent<CartScript>().occupied = true;
             chosen_cart.GetComponent<CartScript>().dog = body.gameObject;
-
+            //Sets the parent of the dog to control movement, a reference to force it to stay with the cart, as well as disable the collider. It wont be needed anymore.
             body.transform.SetParent(transform);
             body.transform.GetComponent<BoxCollider>().enabled = false;
             body.transform.GetComponent<IA_Pet>().setCartReference(chosen_cart);
-            //body.transform.position = cart.transform.position;
+
         }
+        else if (body.transform.tag == "NPC") {
+            //If instead it collides with an NPC...
+            //Gets the type that im supposed to check...
+            string whatType = body.transform.GetComponent<IA_NPC>().type;
+            bool foundOwner = false;
+            int cartIndex = 0;
+
+            //Run through all the current carts to check if they have dogs on them.
+            for (int i = 0; i < 2; i++) {
+                if(allCarts[i].transform.GetComponent<CartScript>().dog != null)
+                {//If they have...
+                    if (allCarts[i].transform.GetComponent<CartScript>().dog.transform.GetComponent<IA_Pet>().type == whatType)
+                    {//Compare the types. If its a match, stores the index of the cart that needs to be emptied, and triggers the next step...
+                        foundOwner = true;
+                        cartIndex = i;
+                    }
+                }
+            }
+
+            if (foundOwner) {
+                //Get the stored index of the correct cart, empties it (the bool of occupied and what dog instance), and sets the pet on to stay with its new owner.
+                allCarts[cartIndex].transform.GetComponent<CartScript>().dog.transform.GetComponent<IA_Pet>().setOwnerReference(body.gameObject);
+                allCarts[cartIndex].transform.GetComponent<CartScript>().occupied = false;
+                allCarts[cartIndex].transform.GetComponent<CartScript>().dog = null;
+            }
+        }
+
     }
 }

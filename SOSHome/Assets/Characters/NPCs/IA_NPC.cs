@@ -4,13 +4,14 @@ using UnityEngine;
 
 public class IA_NPC : AiLifeform
 {
-
+    
     // Start is called before the first frame update
     void Start()
     {
         timeLeft = timeToChangeState;
         StartCoroutine(CountDownTimer(timeToChangeState));
         destination = GetRandomMovementPosition();
+        type = "Default";
     }
 
     // Update is called once per frame
