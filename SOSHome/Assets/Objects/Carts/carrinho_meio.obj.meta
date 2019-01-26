@@ -11,7 +11,12 @@ ModelImporter:
     2300000: carrinho_meio
     3300000: carrinho_meio
     4300000: carrinho_meio
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: palette
+    second: {fileID: 2100000, guid: f9f1f24cbb74643438530dfa4a2788f0, type: 2}
   materials:
     importMaterials: 1
     materialName: 0
@@ -42,7 +47,7 @@ ModelImporter:
     isReadable: 1
   meshes:
     lODScreenPercentages: []
-    globalScale: 1
+    globalScale: 0.08
     meshCompression: 0
     addColliders: 0
     useSRGBMaterialColor: 1

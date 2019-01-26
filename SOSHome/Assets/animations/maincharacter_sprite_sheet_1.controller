@@ -9,13 +9,13 @@ AnimatorController:
   m_Name: maincharacter_sprite_sheet_1
   serializedVersion: 5
   m_AnimatorParameters:
-  - m_Name: walk
+  - m_Name: celeb
     m_Type: 4
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
     m_Controller: {fileID: 0}
-  - m_Name: celeb
+  - m_Name: walk
     m_Type: 4
     m_DefaultFloat: 0
     m_DefaultInt: 0
