@@ -104,6 +104,7 @@ public class PlayerScript : MonoBehaviour
             //If instead it collides with an NPC...
             //Gets the type that im supposed to check...
             string whatType = body.transform.GetComponent<IA_NPC>().type;
+            //print(whatType);
             bool foundOwner = false;
             int cartIndex = 0;
 

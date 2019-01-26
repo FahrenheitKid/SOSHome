@@ -11,7 +11,7 @@ public class IA_NPC : AiLifeform
         timeLeft = timeToChangeState;
         StartCoroutine(CountDownTimer(timeToChangeState));
         destination = GetRandomMovementPosition();
-        type = "Default";
+        //type = "Default";
     }
 
     // Update is called once per frame
