@@ -208,9 +208,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   target: {fileID: 449850834}
-  offsetPos: {x: 0, y: 10, z: -7}
-  moveSpeed: 5
-  turnSpeed: 10
+  offsetPos: {x: 0, y: 6, z: -8}
+  moveSpeed: 10
+  turnSpeed: 1.5
   smoothSpeed: 0.5
 --- !u!1 &94937947
 GameObject:
@@ -222,6 +222,7 @@ GameObject:
   m_Component:
   - component: {fileID: 94937948}
   - component: {fileID: 94937949}
+  - component: {fileID: 94937950}
   m_Layer: 0
   m_Name: hat
   m_TagString: Untagged
@@ -291,6 +292,21 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &94937950
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 94937947}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 531fb7740f9eda845a624163232afdbc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sprRenderer: {fileID: 0}
+  depthPrecision: 10
+  localLayer: 1
 --- !u!1 &162662997
 GameObject:
   m_ObjectHideFlags: 0
@@ -394,6 +410,7 @@ GameObject:
   - component: {fileID: 191247246}
   - component: {fileID: 191247245}
   - component: {fileID: 191247248}
+  - component: {fileID: 191247249}
   m_Layer: 0
   m_Name: dogs_sprite_sheet_6
   m_TagString: Untagged
@@ -495,6 +512,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 40e05bc7dbbe00f46807d38de27646e0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &191247249
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 191247244}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 531fb7740f9eda845a624163232afdbc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sprRenderer: {fileID: 0}
+  depthPrecision: 50
+  localLayer: 5
 --- !u!1001 &220461688
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -722,6 +754,7 @@ GameObject:
   m_Component:
   - component: {fileID: 363072436}
   - component: {fileID: 363072437}
+  - component: {fileID: 363072438}
   m_Layer: 0
   m_Name: dog_hat
   m_TagString: Untagged
@@ -791,6 +824,21 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &363072438
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 363072435}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 531fb7740f9eda845a624163232afdbc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sprRenderer: {fileID: 0}
+  depthPrecision: 10
+  localLayer: 1
 --- !u!1 &382909302
 GameObject:
   m_ObjectHideFlags: 0
@@ -1173,6 +1221,7 @@ GameObject:
   m_Component:
   - component: {fileID: 440154201}
   - component: {fileID: 440154202}
+  - component: {fileID: 440154203}
   m_Layer: 0
   m_Name: hat
   m_TagString: Untagged
@@ -1242,6 +1291,21 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &440154203
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 440154200}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 531fb7740f9eda845a624163232afdbc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sprRenderer: {fileID: 0}
+  depthPrecision: 10
+  localLayer: 1
 --- !u!1 &449850831
 GameObject:
   m_ObjectHideFlags: 0
@@ -1420,6 +1484,7 @@ GameObject:
   m_Component:
   - component: {fileID: 548658720}
   - component: {fileID: 548658721}
+  - component: {fileID: 548658722}
   m_Layer: 0
   m_Name: hat
   m_TagString: Untagged
@@ -1489,6 +1554,21 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &548658722
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 548658719}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 531fb7740f9eda845a624163232afdbc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sprRenderer: {fileID: 0}
+  depthPrecision: 10
+  localLayer: 1
 --- !u!1 &593970731
 GameObject:
   m_ObjectHideFlags: 0
@@ -1593,6 +1673,7 @@ GameObject:
   - component: {fileID: 636185122}
   - component: {fileID: 636185121}
   - component: {fileID: 636185120}
+  - component: {fileID: 636185123}
   m_Layer: 0
   m_Name: citizen3
   m_TagString: Untagged
@@ -1694,6 +1775,21 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &636185123
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 636185118}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 531fb7740f9eda845a624163232afdbc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sprRenderer: {fileID: 0}
+  depthPrecision: 50
+  localLayer: 5
 --- !u!1 &677248108
 GameObject:
   m_ObjectHideFlags: 0
@@ -1704,6 +1800,7 @@ GameObject:
   m_Component:
   - component: {fileID: 677248109}
   - component: {fileID: 677248110}
+  - component: {fileID: 677248111}
   m_Layer: 0
   m_Name: dog_hat
   m_TagString: Untagged
@@ -1773,6 +1870,21 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &677248111
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 677248108}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 531fb7740f9eda845a624163232afdbc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sprRenderer: {fileID: 0}
+  depthPrecision: 10
+  localLayer: 1
 --- !u!1 &684691939
 GameObject:
   m_ObjectHideFlags: 0
@@ -1981,6 +2093,7 @@ GameObject:
   - component: {fileID: 745317261}
   - component: {fileID: 745317260}
   - component: {fileID: 745317259}
+  - component: {fileID: 745317262}
   m_Layer: 0
   m_Name: citizen4
   m_TagString: Untagged
@@ -2082,6 +2195,21 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &745317262
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 745317257}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 531fb7740f9eda845a624163232afdbc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sprRenderer: {fileID: 0}
+  depthPrecision: 50
+  localLayer: 5
 --- !u!1 &755275484
 GameObject:
   m_ObjectHideFlags: 0
@@ -2168,6 +2296,7 @@ GameObject:
   - component: {fileID: 814928259}
   - component: {fileID: 814928258}
   - component: {fileID: 814928261}
+  - component: {fileID: 814928262}
   m_Layer: 0
   m_Name: dogs_sprite_sheet_12
   m_TagString: Untagged
@@ -2269,6 +2398,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 40e05bc7dbbe00f46807d38de27646e0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &814928262
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 814928257}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 531fb7740f9eda845a624163232afdbc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sprRenderer: {fileID: 0}
+  depthPrecision: 50
+  localLayer: 5
 --- !u!1 &855974224
 GameObject:
   m_ObjectHideFlags: 0
@@ -2281,6 +2425,7 @@ GameObject:
   - component: {fileID: 855974227}
   - component: {fileID: 855974226}
   - component: {fileID: 855974228}
+  - component: {fileID: 855974229}
   m_Layer: 0
   m_Name: dogs_sprite_sheet_0
   m_TagString: Untagged
@@ -2382,6 +2527,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 40e05bc7dbbe00f46807d38de27646e0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &855974229
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 855974224}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 531fb7740f9eda845a624163232afdbc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sprRenderer: {fileID: 0}
+  depthPrecision: 50
+  localLayer: 5
 --- !u!1 &1031747258
 GameObject:
   m_ObjectHideFlags: 0
@@ -2392,6 +2552,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1031747259}
   - component: {fileID: 1031747260}
+  - component: {fileID: 1031747261}
   m_Layer: 0
   m_Name: dog_hat
   m_TagString: Untagged
@@ -2461,6 +2622,21 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &1031747261
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1031747258}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 531fb7740f9eda845a624163232afdbc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sprRenderer: {fileID: 0}
+  depthPrecision: 10
+  localLayer: 1
 --- !u!1 &1038140637
 GameObject:
   m_ObjectHideFlags: 0
@@ -3025,6 +3201,7 @@ GameObject:
   - component: {fileID: 1252505407}
   - component: {fileID: 1252505406}
   - component: {fileID: 1252505408}
+  - component: {fileID: 1252505409}
   m_Layer: 0
   m_Name: main_character
   m_TagString: Untagged
@@ -3126,6 +3303,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 40e05bc7dbbe00f46807d38de27646e0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &1252505409
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1252505404}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 531fb7740f9eda845a624163232afdbc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sprRenderer: {fileID: 0}
+  depthPrecision: 50
+  localLayer: 5
 --- !u!1 &1265337191
 GameObject:
   m_ObjectHideFlags: 0
@@ -3138,6 +3330,7 @@ GameObject:
   - component: {fileID: 1265337195}
   - component: {fileID: 1265337194}
   - component: {fileID: 1265337193}
+  - component: {fileID: 1265337196}
   m_Layer: 0
   m_Name: citizen5
   m_TagString: Untagged
@@ -3239,6 +3432,21 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &1265337196
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1265337191}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 531fb7740f9eda845a624163232afdbc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sprRenderer: {fileID: 0}
+  depthPrecision: 50
+  localLayer: 5
 --- !u!4 &1271200250 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4207749593948786127, guid: 25a25ef4d095dac45b2ab500824ed59f,
@@ -3577,6 +3785,7 @@ GameObject:
   - component: {fileID: 1532834992}
   - component: {fileID: 1532834991}
   - component: {fileID: 1532834993}
+  - component: {fileID: 1532834994}
   m_Layer: 0
   m_Name: citizen2
   m_TagString: Untagged
@@ -3678,6 +3887,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 40e05bc7dbbe00f46807d38de27646e0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &1532834994
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1532834989}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 531fb7740f9eda845a624163232afdbc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sprRenderer: {fileID: 0}
+  depthPrecision: 50
+  localLayer: 5
 --- !u!1 &1552324397
 GameObject:
   m_ObjectHideFlags: 0
@@ -3776,6 +4000,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1571838163}
   - component: {fileID: 1571838164}
+  - component: {fileID: 1571838165}
   m_Layer: 0
   m_Name: dog_hat
   m_TagString: Untagged
@@ -3845,6 +4070,21 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &1571838165
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1571838162}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 531fb7740f9eda845a624163232afdbc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sprRenderer: {fileID: 0}
+  depthPrecision: 10
+  localLayer: 1
 --- !u!1 &1593409217
 GameObject:
   m_ObjectHideFlags: 0
@@ -3855,6 +4095,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1593409218}
   - component: {fileID: 1593409219}
+  - component: {fileID: 1593409220}
   m_Layer: 0
   m_Name: hat
   m_TagString: Untagged
@@ -3924,6 +4165,21 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &1593409220
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1593409217}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 531fb7740f9eda845a624163232afdbc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sprRenderer: {fileID: 0}
+  depthPrecision: 10
+  localLayer: 1
 --- !u!1 &1641446871
 GameObject:
   m_ObjectHideFlags: 0
@@ -3934,6 +4190,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1641446872}
   - component: {fileID: 1641446873}
+  - component: {fileID: 1641446874}
   m_Layer: 0
   m_Name: hat
   m_TagString: Untagged
@@ -4003,6 +4260,21 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &1641446874
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1641446871}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 531fb7740f9eda845a624163232afdbc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sprRenderer: {fileID: 0}
+  depthPrecision: 10
+  localLayer: 1
 --- !u!1 &1666015853
 GameObject:
   m_ObjectHideFlags: 0
@@ -4082,6 +4354,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1675145420}
   - component: {fileID: 1675145421}
+  - component: {fileID: 1675145422}
   m_Layer: 0
   m_Name: Game
   m_TagString: Untagged
@@ -4125,6 +4398,102 @@ MonoBehaviour:
   currentCombo: 0
   score: 0
   currentComboTimerInitValue: 0
+--- !u!82 &1675145422
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1675145419}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 8300000, guid: ec2d68a94bb97964bab80ab1c65efb46, type: 3}
+  m_PlayOnAwake: 1
+  m_Volume: 0.7
+  m_Pitch: 1
+  Loop: 1
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!1 &1785733199
 GameObject:
   m_ObjectHideFlags: 0
@@ -4211,6 +4580,7 @@ GameObject:
   - component: {fileID: 1786141224}
   - component: {fileID: 1786141223}
   - component: {fileID: 1786141222}
+  - component: {fileID: 1786141225}
   m_Layer: 0
   m_Name: citizen1
   m_TagString: Untagged
@@ -4312,6 +4682,21 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &1786141225
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1786141220}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 531fb7740f9eda845a624163232afdbc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sprRenderer: {fileID: 0}
+  depthPrecision: 50
+  localLayer: 5
 --- !u!1 &1823055156
 GameObject:
   m_ObjectHideFlags: 0
@@ -4324,6 +4709,7 @@ GameObject:
   - component: {fileID: 1823055158}
   - component: {fileID: 1823055157}
   - component: {fileID: 1823055160}
+  - component: {fileID: 1823055161}
   m_Layer: 0
   m_Name: dogs_sprite_sheet_18
   m_TagString: Untagged
@@ -4425,6 +4811,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 40e05bc7dbbe00f46807d38de27646e0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &1823055161
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1823055156}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 531fb7740f9eda845a624163232afdbc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sprRenderer: {fileID: 0}
+  depthPrecision: 50
+  localLayer: 5
 --- !u!1 &1912873799
 GameObject:
   m_ObjectHideFlags: 0
@@ -5036,6 +5437,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2127458973}
   - component: {fileID: 2127458974}
+  - component: {fileID: 2127458975}
   m_Layer: 0
   m_Name: hat
   m_TagString: Untagged
@@ -5105,3 +5507,18 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &2127458975
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2127458972}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 531fb7740f9eda845a624163232afdbc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sprRenderer: {fileID: 0}
+  depthPrecision: 10
+  localLayer: 1
