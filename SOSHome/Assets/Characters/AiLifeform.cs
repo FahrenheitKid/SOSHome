@@ -14,6 +14,10 @@ public class AiLifeform : MonoBehaviour
 
     protected States current_state = States.IDLE;
 
+    public int timeToChangeState = 2;
+    protected int timeLeft;
+    protected Vector3 destination;
+
     void Initialize() {
         //Better to write your own code to control starting variables.
     }
@@ -59,5 +63,12 @@ public class AiLifeform : MonoBehaviour
         finalDestination.x = n_x;
 
         return finalDestination;
+    }
+
+    protected bool TestThisLocation() {
+        bool freeLocation = true;
+
+
+        return freeLocation;
     }
 }

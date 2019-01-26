@@ -15,6 +15,8 @@ public class PlayerScript : MonoBehaviour
     Quaternion targetRotation;
     Transform cam;
 
+    public GameObject cart;
+
     void Start() {
         cam = Camera.main.transform;
     }
@@ -59,5 +61,17 @@ public class PlayerScript : MonoBehaviour
         Vector3 dir = targetRotation * Vector3.forward;
         transform.position += dir * velocity * Time.deltaTime;
 
+    }
+
+   
+
+    void OnCollisionEnter(Collision body)
+    {
+        //print("Hey");
+        if (body.transform.tag == "Pet") {
+            body.transform.SetParent(cart.transform);
+            body.transform.GetComponent<BoxCollider>().enabled = false;
+            body.transform.position = cart.transform.position;
+        }
     }
 }
