@@ -17,6 +17,7 @@ public class PlayerScript : MonoBehaviour
 
     public GameObject cart;
     public GameObject cart2;
+    public GameObject firstJoint;
 
     private List<GameObject> allCarts = new List<GameObject>();
 
@@ -62,8 +63,9 @@ public class PlayerScript : MonoBehaviour
     void Move() {
         //Moves towards a Vector3.forward, relative to the target rotation!
         Vector3 dir = targetRotation * Vector3.forward;
-        transform.position += dir * velocity * Time.deltaTime;
-
+        //transform.position += dir * velocity * Time.deltaTime;
+        GetComponent<CharacterController>().SimpleMove(dir * velocity * Time.deltaTime * 100);
+        firstJoint.transform.position = transform.position;
     }
 
    
