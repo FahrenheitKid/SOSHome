@@ -27,6 +27,18 @@ public class PlayerScript : MonoBehaviour
         allCarts.Add(cart2);
     }
 
+    public static void QuitGame()
+    {
+        // save any game data here
+        #if UNITY_EDITOR
+        // Application.Quit() does not work in the editor so
+        // UnityEditor.EditorApplication.isPlaying need to be set to false to end the game
+        UnityEditor.EditorApplication.isPlaying = false;
+        #else
+            Application.Quit ();
+        #endif
+    }
+
     void Update() {
         GetInput();
 
@@ -35,7 +47,9 @@ public class PlayerScript : MonoBehaviour
         CalculateDirection();
         Rotate();
         Move();
+        //firstJoint.transform.position = transform.position;
 
+        
     }
 
     void GetInput() {
@@ -43,7 +57,10 @@ public class PlayerScript : MonoBehaviour
         //Works with: Horizontal(a, d, Left, Right) and Vertical (w,s, Up, Down)
         input.x = Input.GetAxisRaw("Horizontal");
         input.y = Input.GetAxisRaw("Vertical");
-
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            QuitGame();
+        }
     }
 
     void CalculateDirection() {
