@@ -5,7 +5,7 @@ using UnityEngine;
 public class PlayerScript : MonoBehaviour
 {
     //Variables used to control character speed of movement.
-    float velocity = 6.0f;
+    public float velocity = 6.0f;
     //float runSpeed = 9.0f;
     //float turnSpeed = 90;
 
