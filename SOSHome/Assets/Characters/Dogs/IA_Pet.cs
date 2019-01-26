@@ -20,7 +20,7 @@ public class IA_Pet : AiLifeform
     void PutSpriteOnPlace() {
         if (transform.childCount > 0) {
             Transform sprite = transform.GetChild(0);
-            sprite.localPosition = transform.position;
+            sprite.position = transform.position;
         }
     }
 }

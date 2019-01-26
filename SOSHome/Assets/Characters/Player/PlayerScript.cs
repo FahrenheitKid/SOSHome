@@ -69,7 +69,7 @@ public class PlayerScript : MonoBehaviour
     {
         //print("Hey");
         if (body.transform.tag == "Pet") {
-            body.transform.SetParent(cart.transform);
+            body.transform.SetParent(transform);
             body.transform.GetComponent<BoxCollider>().enabled = false;
             body.transform.position = cart.transform.position;
         }
