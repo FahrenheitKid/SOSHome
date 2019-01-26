@@ -6,7 +6,7 @@ public class PlayerScript : MonoBehaviour
 {
     //Variables used to control character speed of movement.
     float velocity = 6.0f;
-    float runSpeed = 9.0f;
+    //float runSpeed = 9.0f;
     float turnSpeed = 90;
 
     Vector2 input;
@@ -17,7 +17,6 @@ public class PlayerScript : MonoBehaviour
 
     void Start() {
         cam = Camera.main.transform;
-
     }
 
     void Update() {
@@ -43,17 +42,18 @@ public class PlayerScript : MonoBehaviour
         angle = Mathf.Rad2Deg * angle;
 
         angle += cam.eulerAngles.y;
-
     }
 
     void Rotate() {
         targetRotation = Quaternion.Euler(0, angle, 0);
-        transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, turnSpeed * Time.deltaTime);
-
+        //transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, turnSpeed * Time.deltaTime);
     }
 
     void Move() {
-        transform.position += transform.forward * velocity * Time.deltaTime;
+        //transform.position += transform.forward * velocity * Time.deltaTime;
+        //transform.position = Vector3.MoveTowards(transform.position, targetRotation, velocity * Time.deltaTime);
+        Vector3 dir = targetRotation * Vector3.forward;
+        transform.position += dir * velocity * Time.deltaTime;
 
     }
 }
