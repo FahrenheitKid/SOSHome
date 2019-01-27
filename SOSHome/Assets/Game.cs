@@ -4,6 +4,7 @@ using UnityEngine;
 using Timers;
 using UnityEngine.UI;
 using TMPro;
+using UnityEngine.SceneManagement;
 
 public class Game : MonoBehaviour
 {
@@ -25,7 +26,8 @@ public class Game : MonoBehaviour
     private Transform dogPoints;
     private Transform npcPoints;
 
-
+    [Header("Timer")]
+    public float initialTime;
 
     public TextMeshProUGUI timerUI;
     public TextMeshProUGUI comboUI;
@@ -39,8 +41,15 @@ public class Game : MonoBehaviour
     public int score;
     public float currentComboTimerInitValue;
 
+    [Header("High Score")]
+    public Transform highScoreCanvas;
+    bool gameEnded = false;
+
     private void Awake()
     {
+        QualitySettings.vSyncCount = 0;
+        Application.targetFrameRate = 60;
+
         if (spawnPoints)
         {
             playerPoints = spawnPoints.GetChild(0);
@@ -51,7 +60,7 @@ public class Game : MonoBehaviour
 
     void Start() {
         //setting initial values
-        TimersManager.SetTimer(this, 78f, printTimer);
+        TimersManager.SetTimer(this, initialTime, printTimer);
         score = 0;
         currentCombo = 1;
         currentComboTimerInitValue = 0;
@@ -67,22 +76,32 @@ public class Game : MonoBehaviour
         int hundredth = (int)(((TimersManager.RemainingTime(printTimer) - (int)TimersManager.RemainingTime(printTimer))) * 100);
         timerUI.text = minutes.ToString() + ":" + seconds.ToString() + ":" + hundredth.ToString();
 
-
+        /*
         if (Input.GetKeyDown(KeyCode.P))
         {
             scorePoints(10);
            
 
-        }
+        }*/
 
         if (currentComboTimerInitValue != 0 && TimersManager.RemainingTime(endCombo) > 0)
             comboBarUI.fillAmount = 1 - (currentComboTimerInitValue - TimersManager.RemainingTime(endCombo)) / currentComboTimerInitValue;
 
-        if (currentCombo >= 5)
+        if (currentCombo >= 3)
         {
             comboBarUI.color = HSBColor.ToColor(new HSBColor(Mathf.PingPong(Time.time * 0.4f, 1), 1, 1));
         }
 
+        if (!gameEnded && TimersManager.RemainingTime(printTimer) <= 0)
+        {
+            gameEnded = true;
+            FindObjectOfType<PlayerScript>().enabled = false;
+            highScoreCanvas.gameObject.SetActive(true);
+
+            timerUI.GetComponentInParent<Canvas>().enabled = false;
+
+            StartCoroutine("EndGame");
+        }
     }
 
 
@@ -127,7 +146,33 @@ public class Game : MonoBehaviour
     }
 
 
+    IEnumerator EndGame()
+    {
+        bool achievedHighscore = false;
 
+        highScoreCanvas.GetChild(1).GetComponent<TextMeshProUGUI>().text = "YOUR SCORE: " + score;
+        if (score > PlayerPrefs.GetInt("Highscore", 0))
+        {
+            achievedHighscore = true;
+            PlayerPrefs.SetInt("Highscore", score);
+        }
+        else
+        {
+            highScoreCanvas.GetChild(2).GetComponent<TextMeshProUGUI>().text = "HIGH SCORE: " + PlayerPrefs.GetInt("Highscore", 0);
+        }
+
+        while (!Input.GetKey(KeyCode.Space))
+        {
+            if (achievedHighscore)
+            {
+                highScoreCanvas.GetChild(2).GetComponent<TextMeshProUGUI>().color = HSBColor.ToColor(new HSBColor(Mathf.PingPong(Time.time * 0.4f, 1), 1, 1));
+            }
+
+            yield return null;
+        }
+
+        SceneManager.LoadScene(0);
+    }
 
 public Vector3 GetRandomPlayerPoint()
     {
