@@ -5,6 +5,10 @@ using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 using TMPro;
 
+#if UNITY_EDITOR
+using UnityEditor;
+#endif
+
 public enum MenuState
 {
     Home,
@@ -27,13 +31,34 @@ public class Menu : MonoBehaviour
     public Image fade;
     public float fadeDuration;
 
+    private AudioManager audioManager;
+
+    private void Awake()
+    {
+        audioManager = FindObjectOfType<AudioManager>();
+        audioManager.PlayMenuTheme();
+        QualitySettings.vSyncCount = 0;
+        Application.targetFrameRate = 60;
+        Cursor.visible = false;
+    }
+
     private void Update()
     {
+        if (Input.GetKey(KeyCode.Escape))
+        {
+#if UNITY_EDITOR
+            UnityEditor.EditorApplication.isPlaying = false;
+#else
+            Application.Quit();
+#endif
+        }
+
         switch (state)
         {
             case MenuState.Home:
                 if (Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.UpArrow))
                 {
+                    audioManager.PlaySelectButton();
                     menuIndex--;
 
                     if (menuIndex < 0)
@@ -43,6 +68,7 @@ public class Menu : MonoBehaviour
                 }
                 else if (Input.GetKeyDown(KeyCode.S) || Input.GetKeyDown(KeyCode.DownArrow))
                 {
+                    audioManager.PlaySelectButton();
                     menuIndex++;
 
                     if (menuIndex > 2)
@@ -72,6 +98,7 @@ public class Menu : MonoBehaviour
 
                 if (Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(KeyCode.Return))
                 {
+                    audioManager.PlayConfirmButton();
                     switch (menuIndex)
                     {
                         case 0:
@@ -91,15 +118,17 @@ public class Menu : MonoBehaviour
 
                 break;
             case MenuState.Tutorial:
-                if (Input.GetKeyDown(KeyCode.Escape) || Input.GetKeyDown(KeyCode.Backspace))
+                if (Input.GetKeyDown(KeyCode.Escape) || Input.GetKeyDown(KeyCode.Backspace) || Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(KeyCode.Return))
                 {
+                    audioManager.PlayBackButton();
                     state = MenuState.Home;
                     cameraAnimator.SetTrigger("Home");
                 }
                 break;
             case MenuState.Credits:
-                if (Input.GetKeyDown(KeyCode.Escape) || Input.GetKeyDown(KeyCode.Backspace))
+                if (Input.GetKeyDown(KeyCode.Escape) || Input.GetKeyDown(KeyCode.Backspace) || Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(KeyCode.Return))
                 {
+                    audioManager.PlayBackButton();
                     state = MenuState.Home;
                     cameraAnimator.SetTrigger("Home");
                 }

@@ -17,9 +17,9 @@ public class Game : MonoBehaviour
     public GameObject[] NPCsPrefabs;
     public GameObject[] DogsPrefabs;
     //The number desired of instances of each type on the map, at any given time.
-    [Range(1, 10)]
+    [Range(1, 11)]
     public int dogAmount = 1;
-    [Range(1, 10)]
+    [Range(1, 11)]
     public int npcAmount = 1;
     //These hold the coordinates (In Vector3 type) that serves as a reference of a location to spawn each instance.
     private Transform playerPoints;
@@ -45,10 +45,24 @@ public class Game : MonoBehaviour
     public Transform highScoreCanvas;
     bool gameEnded = false;
 
+    [Header("Audio")]
+    public AudioManager audioManager;
+
+    private bool seconds30 = false;
+    private bool seconds5 = false;
+
     private void Awake()
     {
+        audioManager = FindObjectOfType<AudioManager>();
+        audioManager.PlayGameTheme();
+        audioManager.PlayScoreTheme();
+
+        audioManager.wheelSource.Play();
+        audioManager.wheelSource.Pause();
+
         QualitySettings.vSyncCount = 0;
         Application.targetFrameRate = 60;
+        Cursor.visible = false;
 
         if (spawnPoints)
         {
@@ -74,7 +88,37 @@ public class Game : MonoBehaviour
         int minutes = (int)TimersManager.RemainingTime(printTimer) / 60;
         int seconds = (int)TimersManager.RemainingTime(printTimer) % 60;
         int hundredth = (int)(((TimersManager.RemainingTime(printTimer) - (int)TimersManager.RemainingTime(printTimer))) * 100);
-        timerUI.text = minutes.ToString() + ":" + seconds.ToString() + ":" + hundredth.ToString();
+
+        string min, sec, hun;
+
+        if (minutes - 10 < 0)
+            min = "0" + minutes.ToString();
+        else
+            min = minutes.ToString();
+
+        if (seconds - 10 < 0)
+            sec = "0" + seconds.ToString();
+        else
+            sec = seconds.ToString();
+
+        if (hundredth - 10 < 0)
+            hun = "0" + hundredth.ToString();
+        else
+            hun = hundredth.ToString();
+
+        timerUI.text = min + ":" + sec + ":" + hun;
+
+        if (!seconds30 && TimersManager.RemainingTime(printTimer) <= 30)
+        {
+            seconds30 = true;
+            audioManager.PlayTimer30Seconds();
+        }
+
+        if (!seconds5 && TimersManager.RemainingTime(printTimer) <= 5)
+        {
+            seconds5 = true;
+            audioManager.PlayTimer5Seconds();
+        }
 
         /*
         if (Input.GetKeyDown(KeyCode.P))
@@ -94,17 +138,25 @@ public class Game : MonoBehaviour
 
         if (!gameEnded && TimersManager.RemainingTime(printTimer) <= 0)
         {
-            gameEnded = true;
-            FindObjectOfType<PlayerScript>().enabled = false;
-            highScoreCanvas.gameObject.SetActive(true);
-
-            timerUI.GetComponentInParent<Canvas>().enabled = false;
-
-            StartCoroutine("EndGame");
+            audioManager.PlayTimeUp();
+            End();
         }
     }
 
+    public void End()
+    {
+        StartCoroutine("PlayScore");
 
+        audioManager.StopWheel();
+
+        gameEnded = true;
+        FindObjectOfType<PlayerScript>().enabled = false;
+        highScoreCanvas.gameObject.SetActive(true);
+
+        timerUI.GetComponentInParent<Canvas>().enabled = false;
+
+        StartCoroutine("EndGame");
+    }
 
     public void scorePoints(int points)
     {
@@ -117,13 +169,14 @@ public class Game : MonoBehaviour
 
     }
 
-    void printTimer()
+    public void printTimer()
     {
         //print("Timer" + TimersManager.RemainingTime(printTimer));
     }
 
     void endCombo()
     {
+        audioManager.PlayComboBreak();
         setCombo(1);
 
     }
@@ -161,7 +214,7 @@ public class Game : MonoBehaviour
             highScoreCanvas.GetChild(2).GetComponent<TextMeshProUGUI>().text = "HIGH SCORE: " + PlayerPrefs.GetInt("Highscore", 0);
         }
 
-        while (!Input.GetKey(KeyCode.Space))
+        while (!Input.GetKey(KeyCode.Space) && !Input.GetKey(KeyCode.Backspace) && !Input.GetKey(KeyCode.Escape))
         {
             if (achievedHighscore)
             {
@@ -172,6 +225,20 @@ public class Game : MonoBehaviour
         }
 
         SceneManager.LoadScene(0);
+    }
+
+    IEnumerator PlayScore()
+    {
+        for (int i = 0; i < 100; i++)
+        {
+            audioManager.main.volume -= 0.01f;
+            audioManager.background.volume += 0.01f;
+
+            yield return null;
+        }
+
+        audioManager.main.volume = 0f;
+        audioManager.background.volume = 1f;
     }
 
 public Vector3 GetRandomPlayerPoint()
@@ -231,7 +298,7 @@ public Vector3 GetRandomPlayerPoint()
                     //print("Didnt contain!");
                     alreadyGottenValues.Add(random_index);
                     //Spawn this!
-                    Instantiate(DogsPrefabs[Random.Range(0, DogsPrefabs.Length)], dogPoints.GetChild(random_index).transform.position, Quaternion.identity);
+                    Instantiate(DogsPrefabs[i], dogPoints.GetChild(random_index).transform.position, Quaternion.identity);
 
                 }
                 else {//if that number has already been instantiated...
@@ -240,7 +307,7 @@ public Vector3 GetRandomPlayerPoint()
                     }
                     alreadyGottenValues.Add(random_index);
 
-                    Instantiate(DogsPrefabs[Random.Range(0, DogsPrefabs.Length)], dogPoints.GetChild(random_index).transform.position, Quaternion.identity);
+                    Instantiate(DogsPrefabs[i], dogPoints.GetChild(random_index).transform.position, Quaternion.identity);
 
                 }
             } 
@@ -248,8 +315,9 @@ public Vector3 GetRandomPlayerPoint()
 
         Vector3[] pointsToSpawnNPC = GetRandomNPCPoints(npcAmount);
 
-        for (int i = 0; i < pointsToSpawnNPC.Length; i++) {
-            Instantiate(NPCsPrefabs[Random.Range(0, DogsPrefabs.Length)], pointsToSpawnNPC[i], Quaternion.identity);
+        //int j = Random.RandomRange(0, 13 - npcAmount);
+        for (int i = 0; i < npcAmount; i++) {
+            Instantiate(NPCsPrefabs[i], pointsToSpawnNPC[i], Quaternion.identity);
         }
     }
 }

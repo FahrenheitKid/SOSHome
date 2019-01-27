@@ -9,10 +9,17 @@ public class IA_Pet : AiLifeform
 
     GameObject cart = null;
     GameObject owner = null;
+    [SerializeField]private AnimatorOverrideController[] skin;
+    private int randskin, randseed;
+    public GameObject animation_object;
 
     void Start()
     {
-        
+        randseed = Random.Range(0, 150);
+        Random.seed = randseed;
+        randskin = Random.Range(0, skin.Length);
+        Debug.Log(randskin);
+        animation_object.GetComponent<Animator>().runtimeAnimatorController = skin[randskin];
     }
 
     // Update is called once per frame

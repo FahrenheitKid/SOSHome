@@ -1,6 +1,8 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
+using Timers;
 
 public class PlayerScript : MonoBehaviour
 {
@@ -23,7 +25,11 @@ public class PlayerScript : MonoBehaviour
 
     private List<GameObject> allCarts = new List<GameObject>();
 
+    private int dogCount = 0;
+    private AudioManager audioManager;
+
     void Start() {
+        audioManager = FindObjectOfType<AudioManager>();
         cam = Camera.main.transform;
         allCarts.Add(cart);
         allCarts.Add(cart2);
@@ -34,11 +40,13 @@ public class PlayerScript : MonoBehaviour
         // save any game data here
         #if UNITY_EDITOR
         // Application.Quit() does not work in the editor so
-        // UnityEditor.EditorApplication.isPlaying need to be set to false to end the game
+         //UnityEditor.EditorApplication.isPlaying need to be set to false to end the game
         UnityEditor.EditorApplication.isPlaying = false;
         #else
             Application.Quit ();
         #endif
+
+        SceneManager.LoadScene(0);
     }
 
     void Update() {
@@ -54,12 +62,21 @@ public class PlayerScript : MonoBehaviour
         
     }
 
+    public GameObject[] wheel;
+
     void GetInput() {
+        
         //Used to get the Input from the player;
         //Works with: Horizontal(a, d, Left, Right) and Vertical (w,s, Up, Down)
         input.x = Input.GetAxisRaw("Horizontal");
         input.y = Input.GetAxisRaw("Vertical");
         if (input.x > 0 || input.y > 0 || input.x < 0 || input.y < 0) {
+            for(int k = 0; k < wheel.Length; k++)
+            {
+                wheel[k].GetComponent<Animator>().enabled = true;
+                audioManager.PlayWheel();
+            }
+            
             animation_object.GetComponent<Animator>().SetBool("walk", true);
             if (input.x < 0) {
                 animation_object.GetComponent<SpriteRenderer>().flipX = true;
@@ -69,11 +86,17 @@ public class PlayerScript : MonoBehaviour
                 animation_object.GetComponent<SpriteRenderer>().flipX = false;
                 animation_object.transform.GetChild(0).GetComponent<SpriteRenderer>().flipX = false;
             }
-                
+               
         }
         else
         {
             animation_object.GetComponent<Animator>().SetBool("walk", false);
+            for (int k = 0; k < wheel.Length; k++)
+            {
+                wheel[k].GetComponent<Animator>().enabled = false;
+                audioManager.StopWheel();
+            }
+                
         }
         if (Input.GetKeyDown(KeyCode.Escape))
         {
@@ -117,6 +140,8 @@ public class PlayerScript : MonoBehaviour
         //If i am coliding with a pet....
         if (body.transform.tag == "Pet" && !cartsAreFull) {
 
+            audioManager.PlayCaptureDog();
+
             GameObject chosen_cart;
             //Find what car is being occupied, with preference being the last one...
             if (!allCarts[0].GetComponent<CartScript>().occupied)
@@ -153,6 +178,14 @@ public class PlayerScript : MonoBehaviour
                         cartIndex = i;
 
                         game.scorePoints(game.pointsPerDog);
+                        audioManager.PlayCombo();
+                        dogCount++;
+
+                        if (dogCount == game.dogAmount)
+                        {
+                            game.score += (int)TimersManager.RemainingTime(game.printTimer);
+                            game.End();
+                        }
                     }
                 }
             }

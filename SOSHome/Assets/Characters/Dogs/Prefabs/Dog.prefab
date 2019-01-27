@@ -27,7 +27,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8219796418663008718}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 20.093626, y: -2.6630702, z: -23.722761}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -88,6 +88,12 @@ MonoBehaviour:
   velocity: 6
   rangeDelim: 40
   timeToChangeState: 2
+  skin:
+  - {fileID: 22100000, guid: 5df64a833aac5a544afa399ce7cbd0fb, type: 2}
+  - {fileID: 22100000, guid: bb3bc658247ed2d4986362c44d98852e, type: 2}
+  - {fileID: 22100000, guid: 09d99abca8bacca4f9051869b423e9ff, type: 2}
+  - {fileID: 22100000, guid: b21a56b3091ef644a9f7fc1ddf62dece, type: 2}
+  animation_object: {fileID: 8219796419100967283}
 --- !u!1 &8219796419100967283
 GameObject:
   m_ObjectHideFlags: 0
@@ -228,7 +234,7 @@ GameObject:
   - component: {fileID: 8219796419141211800}
   - component: {fileID: 8219796419141211807}
   - component: {fileID: 8219796419141211806}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: dog_hat
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -285,7 +291,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 1
   m_Sprite: {fileID: 21300002, guid: f746616bc3d614c48ad133cf4a8ab1a7, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -310,5 +316,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sprRenderer: {fileID: 0}
-  depthPrecision: 10
+  depthPrecision: 50
   localLayer: 1
