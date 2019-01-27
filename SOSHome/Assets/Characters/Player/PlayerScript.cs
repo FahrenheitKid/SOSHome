@@ -19,6 +19,7 @@ public class PlayerScript : MonoBehaviour
     public GameObject cart;
     public GameObject cart2;
     public GameObject firstJoint;
+    public SpriteRenderer playerSprite;
     public Game game;
 
     private List<GameObject> allCarts = new List<GameObject>();
@@ -152,7 +153,10 @@ public class PlayerScript : MonoBehaviour
                         foundOwner = true;
                         cartIndex = i;
 
-                        game.scorePoints(game.pointsPerDog);
+                        
+                        FadingText go = Instantiate(game.fadingText_prefab, new Vector3 (transform.position.x, playerSprite.sprite.bounds.size.y, transform.position.z) , Quaternion.identity).GetComponent<FadingText>();
+                        go.text3d.text = game.scorePoints(game.pointsPerDog).ToString();
+
                     }
                 }
             }

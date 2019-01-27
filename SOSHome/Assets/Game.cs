@@ -19,6 +19,7 @@ public class Game : MonoBehaviour
     public Image comboBarUI;
     public TextMeshProUGUI scoreUI;
 
+    public GameObject fadingText_prefab;
     Timer comboTimer;
     public int pointsPerDog = 10;
     public float initialComboTimer = 10f;
@@ -50,8 +51,8 @@ public class Game : MonoBehaviour
         int minutes = (int)TimersManager.RemainingTime(printTimer) / 60;
         int seconds = (int)TimersManager.RemainingTime(printTimer) % 60;
         int hundredth = (int)(((TimersManager.RemainingTime(printTimer) - (int)TimersManager.RemainingTime(printTimer))) * 100);
-        timerUI.text = minutes.ToString() + ":" + seconds.ToString() + ":" + hundredth.ToString();
-
+        timerUI.text = minutes.ToString("00") + ":" + seconds.ToString("00") + ":" + hundredth.ToString("00");
+        
 
         if (Input.GetKeyDown(KeyCode.P))
         {
@@ -72,15 +73,16 @@ public class Game : MonoBehaviour
 
 
 
-    public void scorePoints(int points)
+    public int scorePoints(int points)
     {
+        int aux = points * currentCombo;
         score += points * currentCombo;
         scoreUI.text = score.ToString();
         setCombo(++currentCombo);
         currentComboTimerInitValue = initialComboTimer / currentCombo * 3;
         TimersManager.SetTimer(this, currentComboTimerInitValue, endCombo);
 
-
+        return aux;
     }
 
     void printTimer()
