@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using Timers;
 
+
 public class PlayerScript : MonoBehaviour
 {
     //Variables used to control character speed of movement.
@@ -21,6 +22,7 @@ public class PlayerScript : MonoBehaviour
     public GameObject cart;
     public GameObject cart2;
     public GameObject firstJoint;
+    public SpriteRenderer playerSprite;
     public Game game;
 
     private List<GameObject> allCarts = new List<GameObject>();
@@ -28,11 +30,15 @@ public class PlayerScript : MonoBehaviour
     private int dogCount = 0;
     private AudioManager audioManager;
 
+    public GameObject[] wheel;
+
     void Start() {
         audioManager = FindObjectOfType<AudioManager>();
         cam = Camera.main.transform;
         allCarts.Add(cart);
         allCarts.Add(cart2);
+
+       
     }
 
     public static void QuitGame()
@@ -62,7 +68,9 @@ public class PlayerScript : MonoBehaviour
         
     }
 
-    public GameObject[] wheel;
+
+
+
 
     void GetInput() {
         
@@ -159,6 +167,9 @@ public class PlayerScript : MonoBehaviour
             body.transform.GetComponent<BoxCollider>().enabled = false;
             body.transform.GetComponent<IA_Pet>().setCartReference(chosen_cart);
 
+            Instantiate(game.starFX_prefab, new Vector3(body.transform.position.x, body.transform.GetChild(0).GetComponent<SpriteRenderer>().sprite.bounds.size.y * 1.2f, body.transform.position.z), Quaternion.identity);
+
+
         }
         else if (body.transform.tag == "NPC") {
             //If instead it collides with an NPC...
@@ -177,15 +188,24 @@ public class PlayerScript : MonoBehaviour
                         foundOwner = true;
                         cartIndex = i;
 
-                        game.scorePoints(game.pointsPerDog);
+          
+                        FadingText go = Instantiate(game.fadingText_prefab, new Vector3 (transform.position.x, playerSprite.sprite.bounds.size.y, transform.position.z) , Quaternion.identity).GetComponent<FadingText>();
+                        go.text3d.text = game.scorePoints(game.pointsPerDog).ToString();
                         audioManager.PlayCombo();
                         dogCount++;
 
                         if (dogCount == game.dogAmount)
                         {
                             game.score += (int)TimersManager.RemainingTime(game.printTimer);
+
+                            go.text3d.text = game.score;
                             game.End();
                         }
+
+
+                        Instantiate(game.heartFX_prefab, new Vector3(body.transform.position.x, body.transform.GetChild(0).GetComponent<SpriteRenderer>().sprite.bounds.size.y * 1.2f, body.transform.position.z), Quaternion.identity);
+
+
                     }
                 }
             }

@@ -34,6 +34,13 @@ public class Game : MonoBehaviour
     public Image comboBarUI;
     public TextMeshProUGUI scoreUI;
 
+    public GameObject fadingText_prefab;
+    public GameObject waterFX_prefab;
+    public GameObject fireFX_prefab;
+    public GameObject heartFX_prefab;
+    public GameObject dustFX_prefab;
+    public GameObject starFX_prefab;
+
     Timer comboTimer;
     public int pointsPerDog = 10;
     public float initialComboTimer = 10f;
@@ -89,44 +96,8 @@ public class Game : MonoBehaviour
         int seconds = (int)TimersManager.RemainingTime(printTimer) % 60;
         int hundredth = (int)(((TimersManager.RemainingTime(printTimer) - (int)TimersManager.RemainingTime(printTimer))) * 100);
 
-        string min, sec, hun;
-
-        if (minutes - 10 < 0)
-            min = "0" + minutes.ToString();
-        else
-            min = minutes.ToString();
-
-        if (seconds - 10 < 0)
-            sec = "0" + seconds.ToString();
-        else
-            sec = seconds.ToString();
-
-        if (hundredth - 10 < 0)
-            hun = "0" + hundredth.ToString();
-        else
-            hun = hundredth.ToString();
-
-        timerUI.text = min + ":" + sec + ":" + hun;
-
-        if (!seconds30 && TimersManager.RemainingTime(printTimer) <= 30)
-        {
-            seconds30 = true;
-            audioManager.PlayTimer30Seconds();
-        }
-
-        if (!seconds5 && TimersManager.RemainingTime(printTimer) <= 5)
-        {
-            seconds5 = true;
-            audioManager.PlayTimer5Seconds();
-        }
-
-        /*
-        if (Input.GetKeyDown(KeyCode.P))
-        {
-            scorePoints(10);
-           
-
-        }*/
+        timerUI.text = minutes.ToString("00") + ":" + seconds.ToString("00") + ":" + hundredth.ToString("00");
+        
 
         if (currentComboTimerInitValue != 0 && TimersManager.RemainingTime(endCombo) > 0)
             comboBarUI.fillAmount = 1 - (currentComboTimerInitValue - TimersManager.RemainingTime(endCombo)) / currentComboTimerInitValue;
@@ -158,15 +129,16 @@ public class Game : MonoBehaviour
         StartCoroutine("EndGame");
     }
 
-    public void scorePoints(int points)
+    public int scorePoints(int points)
     {
+        int aux = points * currentCombo;
         score += points * currentCombo;
         scoreUI.text = score.ToString();
         setCombo(++currentCombo);
         currentComboTimerInitValue = initialComboTimer / currentCombo * 3;
         TimersManager.SetTimer(this, currentComboTimerInitValue, endCombo);
 
-
+        return aux;
     }
 
     public void printTimer()
