@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class IA_NPC : AiLifeform
 {
-    
+    public GameObject animator_object;
     // Start is called before the first frame update
     void Start()
     {

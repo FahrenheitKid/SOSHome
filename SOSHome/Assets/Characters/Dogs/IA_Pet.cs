@@ -33,7 +33,7 @@ public class IA_Pet : AiLifeform
             transform.position = cart.transform.position;
         }
         if (owner != null) {
-            transform.position = owner.transform.position;
+            transform.position = owner.transform.position + new Vector3(-1,0,-0.5f);
         }
     }
 

@@ -312,3 +312,4 @@ MonoBehaviour:
   velocity: 6
   rangeDelim: 40
   timeToChangeState: 2
+  animator_object: {fileID: 5519544991258587159}

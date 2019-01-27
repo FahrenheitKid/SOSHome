@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 7502714250329448654}
   - component: {fileID: 7502714250329448655}
   m_Layer: 0
-  m_Name: NPC (3)
+  m_Name: NPC (10)
   m_TagString: NPC
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -88,6 +88,7 @@ MonoBehaviour:
   velocity: 6
   rangeDelim: 40
   timeToChangeState: 2
+  animator_object: {fileID: 7502714251735232942}
 --- !u!1 &7502714251303481724
 GameObject:
   m_ObjectHideFlags: 0

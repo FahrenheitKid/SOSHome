@@ -217,6 +217,7 @@ MonoBehaviour:
   velocity: 6
   rangeDelim: 40
   timeToChangeState: 2
+  animator_object: {fileID: 332368843808132437}
 --- !u!1 &5849355327015056606
 GameObject:
   m_ObjectHideFlags: 0

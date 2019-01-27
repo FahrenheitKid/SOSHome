@@ -192,13 +192,17 @@ public class PlayerScript : MonoBehaviour
                         FadingText go = Instantiate(game.fadingText_prefab, new Vector3 (transform.position.x, playerSprite.sprite.bounds.size.y, transform.position.z) , Quaternion.identity).GetComponent<FadingText>();
                         go.text3d.text = game.scorePoints(game.pointsPerDog).ToString();
                         audioManager.PlayCombo();
+                        if (body.gameObject.GetComponent<IA_NPC>())
+                        {
+                            body.gameObject.GetComponent<IA_NPC>().animator_object.GetComponent<Animator>().SetBool("celeb", true);
+                        }
                         dogCount++;
 
                         if (dogCount == game.dogAmount)
                         {
                             game.score += (int)TimersManager.RemainingTime(game.printTimer);
 
-                            go.text3d.text = game.score;
+                            go.text3d.text = game.score.ToString();
                             game.End();
                         }
 
