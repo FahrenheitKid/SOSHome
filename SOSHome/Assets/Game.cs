@@ -10,9 +10,22 @@ public class Game : MonoBehaviour
     [Header("Refs")]
     public Transform spawnPoints;
 
+    //Lets make a list of prefab instances in the inspector.
+    //These lists will contain the basic instances of NPCs and Dogs.
+    //Use these to instantiate basic prefabs that can get the game going....In the future, make it more generic.
+    public GameObject[] NPCsPrefabs;
+    public GameObject[] DogsPrefabs;
+    //The number desired of instances of each type on the map, at any given time.
+    [Range(1, 10)]
+    public int dogAmount = 1;
+    [Range(1, 10)]
+    public int npcAmount = 1;
+    //These hold the coordinates (In Vector3 type) that serves as a reference of a location to spawn each instance.
     private Transform playerPoints;
     private Transform dogPoints;
     private Transform npcPoints;
+
+
 
     public TextMeshProUGUI timerUI;
     public TextMeshProUGUI comboUI;
@@ -42,6 +55,8 @@ public class Game : MonoBehaviour
         score = 0;
         currentCombo = 1;
         currentComboTimerInitValue = 0;
+
+        SpawnInstances();
     }
 
     // Update is called once per frame
@@ -154,5 +169,42 @@ public Vector3 GetRandomPlayerPoint()
         } while (selectedPoints.Count < count);
 
         return selectedPoints.ToArray();
+    }
+
+    void SpawnInstances() {
+        if (dogPoints) {
+            
+            //If there is an instance of an array with points...
+            int max_children = dogPoints.childCount;
+            List<int> alreadyGottenValues = new List<int>();
+
+            for (int i = 0; i < dogAmount; i++) {
+                
+                int random_index = Random.Range(0, max_children -1);
+                if (!alreadyGottenValues.Contains(random_index))
+                {
+                    //print("Didnt contain!");
+                    alreadyGottenValues.Add(random_index);
+                    //Spawn this!
+                    Instantiate(DogsPrefabs[Random.Range(0, DogsPrefabs.Length)], dogPoints.GetChild(random_index).transform.position, Quaternion.identity);
+
+                }
+                else {//if that number has already been instantiated...
+                    while (alreadyGottenValues.Contains(random_index)) {
+                        random_index = Random.Range(0, max_children - 1);
+                    }
+                    alreadyGottenValues.Add(random_index);
+
+                    Instantiate(DogsPrefabs[Random.Range(0, DogsPrefabs.Length)], dogPoints.GetChild(random_index).transform.position, Quaternion.identity);
+
+                }
+            } 
+        }
+
+        Vector3[] pointsToSpawnNPC = GetRandomNPCPoints(npcAmount);
+
+        for (int i = 0; i < pointsToSpawnNPC.Length; i++) {
+            Instantiate(NPCsPrefabs[Random.Range(0, DogsPrefabs.Length)], pointsToSpawnNPC[i], Quaternion.identity);
+        }
     }
 }
