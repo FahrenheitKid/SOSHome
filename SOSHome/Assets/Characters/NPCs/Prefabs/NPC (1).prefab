@@ -311,4 +311,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sprRenderer: {fileID: 0}
   depthPrecision: 10
-  localLayer: 1
+  localLayer: 2.5

@@ -21,6 +21,6 @@ public class Depth : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        sprRenderer.sortingOrder = (int)(-transform.position.y * depthPrecision) + (int)localLayer;
+        sprRenderer.sortingOrder = Mathf.RoundToInt(-transform.position.z) + (int)localLayer;
     }
 }

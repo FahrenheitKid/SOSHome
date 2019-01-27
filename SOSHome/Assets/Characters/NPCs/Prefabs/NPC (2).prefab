@@ -182,7 +182,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sprRenderer: {fileID: 0}
   depthPrecision: 10
-  localLayer: 1
+  localLayer: 2.5
 --- !u!1 &6171171792140956828
 GameObject:
   m_ObjectHideFlags: 0
