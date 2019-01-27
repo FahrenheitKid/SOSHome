@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+
 public class PlayerScript : MonoBehaviour
 {
     //Variables used to control character speed of movement.
@@ -24,10 +25,14 @@ public class PlayerScript : MonoBehaviour
 
     private List<GameObject> allCarts = new List<GameObject>();
 
+
+    
     void Start() {
         cam = Camera.main.transform;
         allCarts.Add(cart);
         allCarts.Add(cart2);
+
+       
     }
 
     public static void QuitGame()
@@ -55,6 +60,8 @@ public class PlayerScript : MonoBehaviour
         
     }
 
+
+    
     void GetInput() {
         //Used to get the Input from the player;
         //Works with: Horizontal(a, d, Left, Right) and Vertical (w,s, Up, Down)
@@ -135,6 +142,9 @@ public class PlayerScript : MonoBehaviour
             body.transform.GetComponent<BoxCollider>().enabled = false;
             body.transform.GetComponent<IA_Pet>().setCartReference(chosen_cart);
 
+            Instantiate(game.starFX_prefab, new Vector3(body.transform.position.x, body.transform.GetChild(0).GetComponent<SpriteRenderer>().sprite.bounds.size.y * 1.2f, body.transform.position.z), Quaternion.identity);
+
+
         }
         else if (body.transform.tag == "NPC") {
             //If instead it collides with an NPC...
@@ -156,6 +166,8 @@ public class PlayerScript : MonoBehaviour
                         
                         FadingText go = Instantiate(game.fadingText_prefab, new Vector3 (transform.position.x, playerSprite.sprite.bounds.size.y, transform.position.z) , Quaternion.identity).GetComponent<FadingText>();
                         go.text3d.text = game.scorePoints(game.pointsPerDog).ToString();
+
+                        Instantiate(game.heartFX_prefab, new Vector3(body.transform.position.x, body.transform.GetChild(0).GetComponent<SpriteRenderer>().sprite.bounds.size.y * 1.2f, body.transform.position.z), Quaternion.identity);
 
                     }
                 }

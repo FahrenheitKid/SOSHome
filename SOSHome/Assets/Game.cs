@@ -20,6 +20,12 @@ public class Game : MonoBehaviour
     public TextMeshProUGUI scoreUI;
 
     public GameObject fadingText_prefab;
+    public GameObject waterFX_prefab;
+    public GameObject fireFX_prefab;
+    public GameObject heartFX_prefab;
+    public GameObject dustFX_prefab;
+    public GameObject starFX_prefab;
+
     Timer comboTimer;
     public int pointsPerDog = 10;
     public float initialComboTimer = 10f;
