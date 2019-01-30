@@ -55,7 +55,7 @@ public class PlayerScript : MonoBehaviour
         SceneManager.LoadScene(0);
     }
 
-    void Update() {
+    void FixedUpdate() {
         GetInput();
 
         if (Mathf.Abs(input.x) < 1 && Mathf.Abs(input.y) < 1) return;
@@ -130,7 +130,7 @@ public class PlayerScript : MonoBehaviour
         //Moves towards a Vector3.forward, relative to the target rotation!
         Vector3 dir = targetRotation * Vector3.forward;
         //transform.position += dir * velocity * Time.deltaTime;
-        GetComponent<CharacterController>().SimpleMove(dir * velocity * Time.deltaTime * 100);
+        GetComponent<CharacterController>().SimpleMove((dir * velocity * 100 * Time.deltaTime));
         firstJoint.transform.position = transform.position;
     }
 
